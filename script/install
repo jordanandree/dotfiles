@@ -18,3 +18,9 @@ if [ ! -d "$DOTFILES_ROOT/bin" ]; then
 else
   printf "bin files already installed\n"
 fi
+
+printf "installing osx software updates...\n"
+./osx/install.sh
+
+printf "installing osx defaults...\n"
+./osx/set-defaults.sh
