@@ -2,10 +2,11 @@
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
-
-set -e
+DOTFILES_SOURCES=$(find . -name "*symlink" -type f -exec ls {} \;)
 
 echo ''
+
+set -e
 
 printf "Setting up homebrew...\n"
 brew tap Homebrew/bundle
@@ -26,11 +27,9 @@ printf "installing osx defaults...\n"
 ./osx/set-defaults.sh
 
 printf "symlinking dotfiles...\n"
-DOTFILES_SOURCES=$(find . -name "*symlink" -type f -exec ls {} \;)
-
 for file_name in $DOTFILES_SOURCES; do
-  source_location=`echo $file_name | sed -e 's/\.\///g'`
-  new_location=~/`echo $source_location | sed -e 's/\.symlink//g' -e 's/^.*\//./g'`
+  source_location=$DOTFILES_ROOT/`echo $file_name | sed -e 's/\.\///g'`
+  new_location=~/`echo $file_name | sed -e 's/\.\///g' -e 's/\.symlink//g' -e 's/^.*\//./g'`
 
   if [ ! -f $new_location ]; then
     ln -s $source_location $new_location
