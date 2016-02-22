@@ -11,6 +11,7 @@ alias vm="vagrant"
 alias h="heroku"
 alias sourcetree='open -a SourceTree'
 alias st='sourcetree'
+alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
 
 # VPN Aliases
 source ~/.openconnect/aliases
