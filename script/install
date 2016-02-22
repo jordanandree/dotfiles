@@ -24,3 +24,18 @@ printf "installing osx software updates...\n"
 
 printf "installing osx defaults...\n"
 ./osx/set-defaults.sh
+
+printf "symlinking dotfiles...\n"
+DOTFILES_SOURCES=$(find . -name "*symlink" -type f -exec ls {} \;)
+
+for file_name in $DOTFILES_SOURCES; do
+  source_location=`echo $file_name | sed -e 's/\.\///g'`
+  new_location=~/`echo $source_location | sed -e 's/\.symlink//g' -e 's/^.*\//./g'`
+
+  if [ ! -f $new_location ]; then
+    cp $source_location $new_location
+    printf "done symlinking $new_location...\n"
+  else
+    printf "skip symlinking $new_location (already exists)...\n"
+  fi
+done
