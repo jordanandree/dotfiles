@@ -33,7 +33,7 @@ for file_name in $DOTFILES_SOURCES; do
   new_location=~/`echo $source_location | sed -e 's/\.symlink//g' -e 's/^.*\//./g'`
 
   if [ ! -f $new_location ]; then
-    cp $source_location $new_location
+    ln -s $source_location $new_location
     printf "done symlinking $new_location...\n"
   else
     printf "skip symlinking $new_location (already exists)...\n"
