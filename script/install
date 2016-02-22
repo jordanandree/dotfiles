@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd -P)
+
+set -e
+
+echo ''
+
+printf "Setting up homebrew...\n"
+brew tap Homebrew/bundle
+brew bundle --file="$DOTFILES_ROOT/Brewfile"
+
+printf "Setting up bin files...\n"
+if [ ! -d "$DOTFILES_ROOT/bin" ]; then
+  ln -s $DOTFILES_ROOT/bin ~/bin
+  printf "bin files installed successfully\n"
+else
+  printf "bin files already installed\n"
+fi
