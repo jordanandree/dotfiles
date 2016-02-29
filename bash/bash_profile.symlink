@@ -12,6 +12,8 @@ alias h="heroku"
 alias sourcetree='open -a SourceTree'
 alias st='sourcetree'
 alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
+alias subl='reattach-to-user-namespace subl'
+alias st='reattach-to-user-namespace st'
 
 # VPN Aliases
 source ~/.openconnect/aliases
