@@ -9,11 +9,9 @@ alias be="bundle exec"
 alias bs="bundle show"
 alias vm="vagrant"
 alias h="heroku"
-alias sourcetree='open -a SourceTree'
-alias st='sourcetree'
+alias st='/Applications/SourceTree.app/Contents/Resources/stree'
 alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
 alias subl='reattach-to-user-namespace subl'
-alias st='reattach-to-user-namespace st'
 alias cop='rubocop'
 
 # VPN Aliases
