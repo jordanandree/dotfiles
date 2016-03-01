@@ -8,30 +8,56 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'kien/ctrlp.vim'
+Bundle 'rking/ag.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" Syntax
+" Colors and Syntax
 syntax on
 colorscheme hybrid
 set background=dark
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+set guifont=Monaco:h13
 
-" GUI
-set guifont=Monaco:h12
-set guioptions-=T " Removes top toolbar
-set guioptions-=r " Removes right hand scroll bar
+set cursorline
+set expandtab
+set modelines=0
+set shiftwidth=2
+set clipboard=unnamed
+set synmaxcol=128
+set ttyscroll=10
+set encoding=utf-8
+set tabstop=2
+set nowrap
+set number
+set expandtab
+set nowritebackup
+set noswapfile
+set nobackup
+set hlsearch
+set ignorecase
+set smartcase
+
+" Tab between buffers
+noremap <tab> <c-w><c-w>
 
 " NERDTree
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 
-set go-=L " Removes left hand scroll bar
-autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> correctly
+" CtrlP
+nnoremap <silent> t :CtrlP<cr>
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_by_filename = 1
+let g:ctrlp_max_files = 600
+let g:ctrlp_max_depth = 5
 
-:set cpoptions+=$ " puts a $ marker for the end of words/lines in cw/c$ commands
-
-" whitespace
-:set expandtab
-:set tabstop=2
-:set shiftwidth=2
+" Quit with :Q
+command -nargs=0 Quit :qa!
