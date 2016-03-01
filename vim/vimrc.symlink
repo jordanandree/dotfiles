@@ -68,6 +68,7 @@ let g:NERDTreeDirArrowCollapsible = '–'
 
 " CtrlP
 nnoremap <silent> t :CtrlP<cr>
+let g:ctrlp_split_window = 1 " <CR> = New Tab
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 600
