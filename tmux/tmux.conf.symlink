@@ -8,10 +8,10 @@ set -g base-index 2
 setw -g mode-keys vi
 
 # mouse behavior
-set-option -g mouse on
 setw -g mode-mouse on
 set -g mouse-select-pane on
 set -g mouse-resize-pane on
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
 
 # scrollback size
 set -g history-limit 10000
