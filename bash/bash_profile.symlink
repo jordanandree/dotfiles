@@ -18,7 +18,7 @@ alias cop='rubocop'
 source ~/.openconnect/aliases
 
 # Set editor to Sublime Text 2
-export EDITOR='subl'
+export EDITOR='vim'
 
 # green path with git branch in bash prompt
 export PS1="\[\033[01;32m\] \w \[\033[0;32m\]\`ruby -e \"print (%x{git branch 2> /dev/null}.split(/\n/).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`\[\033[37m\]→\[\033[00m\] "
