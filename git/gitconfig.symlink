@@ -30,7 +30,7 @@
 [core]
   excludesfile = /Users/jordanandree/.gitignore
   quotepath = false
-  editor = subl -w -c
+  editor = vim
 [push]
   default = current
 [heroku]
