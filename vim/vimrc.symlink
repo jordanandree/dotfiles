@@ -51,6 +51,15 @@ noremap <tab> <c-w><c-w>
 
 " NERDTree
 let g:NERDTreeWinPos = "left"
+let g:NERDTreeWinSize = 20
+
+" Open NERDTree if no file is selected
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '–'
 
 " CtrlP
 nnoremap <silent> t :CtrlP<cr>
@@ -58,6 +67,3 @@ let g:ctrlp_working_path_mode = 2
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 600
 let g:ctrlp_max_depth = 5
-
-" Quit with :Q
-command -nargs=0 Quit :qa!
