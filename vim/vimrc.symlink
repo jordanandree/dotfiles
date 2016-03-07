@@ -57,9 +57,12 @@ noremap <tab> <c-w><c-w>
 nnoremap <silent> t :CtrlP<cr>
 let g:ctrlp_split_window = 1 " <CR> = New Tab
 let g:ctrlp_working_path_mode = 2
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 600
-let g:ctrlp_max_depth = 5
+let g:ctrlp_max_files = 15000
+let g:ctrlp_custom_ignore = {
+  \ 'dir' : '\v[\/]\.?(git|hg|svn|tmp|log)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': ''
+  \ }
 
 " Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'rubylint']
