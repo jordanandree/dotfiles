@@ -17,7 +17,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 
@@ -53,18 +52,6 @@ set smartcase
 
 " Tab between buffers
 noremap <tab> <c-w><c-w>
-
-" NERDTree
-let g:NERDTreeWinPos = "left"
-let g:NERDTreeWinSize = 20
-
-" Open NERDTree if no file is selected
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '–'
 
 " CtrlP
 nnoremap <silent> t :CtrlP<cr>
