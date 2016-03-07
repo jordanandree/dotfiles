@@ -47,6 +47,9 @@ bind-key T previous-window
 
 bind-key [ copy-mode
 bind-key ] paste-buffer
+bind-key p paste-buffer
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
 
 # open new pane in current directory
 bind c neww -c "#{pane_current_path}"
