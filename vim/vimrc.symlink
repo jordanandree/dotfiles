@@ -1,6 +1,3 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -40,7 +37,9 @@ set modelines=0
 set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=128
-set ttyscroll=10
+if !has('nvim')
+  set ttyscroll=10
+endif
 set encoding=utf-8
 set tabstop=2
 set nowrap
