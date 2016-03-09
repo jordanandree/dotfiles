@@ -7,6 +7,8 @@ alias bu="bundle update"
 alias bi="bundle install"
 alias be="bundle exec"
 alias bs="bundle show"
+
+# others
 alias vm="vagrant"
 alias h="heroku"
 alias st='/Applications/SourceTree.app/Contents/Resources/stree'
@@ -14,11 +16,14 @@ alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulato
 alias subl='reattach-to-user-namespace subl'
 alias cop='rubocop'
 
+# use nvim
+alias vim="nvim"
+
 # VPN Aliases
 source ~/.openconnect/aliases
 
-# Set editor to Sublime Text 2
-export EDITOR='vim'
+# Set editor to nvim
+export EDITOR='nvim'
 
 # green path with git branch in bash prompt
 export PS1="\[\033[01;32m\] \w \[\033[0;32m\]\`ruby -e \"print (%x{git branch 2> /dev/null}.split(/\n/).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`\[\033[37m\]→\[\033[00m\] "
