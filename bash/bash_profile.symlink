@@ -102,3 +102,6 @@ export PATH="/Users/jordanandree/anaconda/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export rvmsudo_secure_path=1
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Docker
+eval "$(docker-machine env default)"
