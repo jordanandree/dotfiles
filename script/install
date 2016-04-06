@@ -27,8 +27,8 @@ warn () {
 set -e
 
 info "Setting up bin files..."
-if [ ! -d "~/bin" ]; then
-  ln -s $DOTFILES_ROOT/bin ~/bin
+if [ ! -h ~/bin ]; then
+  ln -s $DOTFILES_ROOT/bin $HOME
   success "→ bin files installed successfully"
 else
   warn "→ bin files already installed"
