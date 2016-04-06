@@ -33,11 +33,6 @@ if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
   . "$HOME/.scm_breeze/scm_breeze.sh"
 fi
 
-# Bash Completion 1
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
 . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
