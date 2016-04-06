@@ -38,7 +38,7 @@ info "Running bash install scripts..."
 for file_name in $BASH_SOURCES; do
   title=`grep '\# title\: ' $file_name | sed -e 's/# title: //g'`
   info "Installing $title ($file_name)..."
-  sh $file_name > /dev/null
+  sh $file_name #> /dev/null
   if [ $? -eq 0 ]; then
     success "→ $title installed successfully"
   else
