@@ -1,10 +1,20 @@
 # title: vim
 
-mkdir -p ~/.vim/colors
-mkdir -p ~/.vim/bundle
+if [ ! -d ~/.vim/bundle/ ]; then
+  mkdir -p ~/.vim/bundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-git clone https://github.com/w0ng/vim-hybrid.git ~/.vim/
+if [ ! -d ~/.vim/colors/ ]; then
+  mkdir -p ~/.vim/colors
+  cp ./vim/colors/hybrid.vim ~/.vim/colors/
+fi;
 
-vim +PluginInstall +q
-nvim +PluginInstall +q
+if [ ! -d ~/.config/nvim/ ]; then
+  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  ln -s ~/.vim $XDG_CONFIG_HOME/nvim
+  ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+fi
+
+vim +PluginInstall +qall
+nvim +PluginInstall +qall
