@@ -2,6 +2,7 @@ tap 'caskroom/cask'
 tap 'josegonzalez/php'
 tap 'homebrew/homebrew-versions'
 tap 'homebrew/dupes'
+tap 'homebrew/services'
 tap 'neovim/neovim'
 
 cask_args appdir: '/Applications'
