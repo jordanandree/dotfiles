@@ -28,11 +28,6 @@ export EDITOR='nvim'
 # green path with git branch in bash prompt
 export PS1="\[\033[01;32m\] \w \[\033[0;32m\]\`ruby -e \"print (%x{git branch 2> /dev/null}.split(/\n/).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`\[\033[37m\]→\[\033[00m\] "
 
-# SCM Breeze
-if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
-  . "$HOME/.scm_breeze/scm_breeze.sh"
-fi
-
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
 . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
@@ -94,6 +89,11 @@ export PATH="/Users/jordanandree/anaconda/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export rvmsudo_secure_path=1
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# SCM Breeze
+if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
+  . "$HOME/.scm_breeze/scm_breeze.sh"
+fi
 
 # Docker
 eval "$(docker-machine env default)"
