@@ -28,16 +28,17 @@
 [apply]
   whitespace = nowarn
 [core]
-  excludesfile = /Users/jordanandree/.gitignore
+	excludesfile = /Users/jandree/.gitignore
   quotepath = false
-  editor = vim
+	editor = nvim
 [push]
   default = current
 [heroku]
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [init]
-  templatedir = /Users/jordanandree/.git-templates
+  templatedir = /Users/jandree/.git-templates
