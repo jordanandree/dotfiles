@@ -15,6 +15,7 @@ cask 'dropbox'
 cask 'google-drive'
 cask 'sourcetree'
 cask 'alfred'
+cask 'boom'
 
 brew 'ack'
 brew 'apple-gcc42'
