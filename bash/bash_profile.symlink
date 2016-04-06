@@ -73,9 +73,6 @@ export PATH="$PATH:~/.composer/vendor/bin"
 # Homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
-# Digital Ocean Vagrant Cert
-export SSL_CERT_FILE="/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
-
 # Erlang
 export PATH="$PATH:/path/to/elixir/bin"
 
