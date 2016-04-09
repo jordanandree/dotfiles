@@ -18,6 +18,8 @@ cask 'sourcetree'
 cask 'alfred'
 cask 'boom'
 cask 'transmit'
+cask 'colorsnapper'
+cask 'adium'
 
 brew 'ack'
 brew 'apple-gcc42'
