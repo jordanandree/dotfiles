@@ -5,7 +5,6 @@ tap 'homebrew/dupes'
 tap 'homebrew/services'
 tap 'neovim/neovim'
 
-cask_args appdir: '/Applications'
 cask 'java'
 cask 'iterm2'
 cask 'virtualbox'
