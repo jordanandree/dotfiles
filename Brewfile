@@ -21,6 +21,7 @@ cask 'transmit'
 cask 'colorsnapper'
 cask 'adium'
 cask 'slack'
+cask 'ginbox'
 
 brew 'ack'
 brew 'apple-gcc42'
