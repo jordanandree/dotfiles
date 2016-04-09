@@ -20,6 +20,7 @@ cask 'boom'
 cask 'transmit'
 cask 'colorsnapper'
 cask 'adium'
+cask 'slack'
 
 brew 'ack'
 brew 'apple-gcc42'
