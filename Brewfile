@@ -24,6 +24,7 @@ cask 'ginbox'
 cask 'aerial'
 cask 'soundmate'
 cask 'hipchat'
+cask 'postico'
 
 brew 'ack'
 brew 'apple-gcc42'
