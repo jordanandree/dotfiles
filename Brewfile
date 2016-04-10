@@ -25,6 +25,7 @@ cask 'aerial'
 cask 'soundmate'
 cask 'hipchat'
 cask 'postico'
+cask 'sequel-pro'
 
 brew 'ack'
 brew 'apple-gcc42'
