@@ -22,6 +22,7 @@ cask 'adium'
 cask 'slack'
 cask 'ginbox'
 cask 'aerial'
+cask 'soundmate'
 
 brew 'ack'
 brew 'apple-gcc42'
