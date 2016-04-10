@@ -23,6 +23,7 @@ cask 'slack'
 cask 'ginbox'
 cask 'aerial'
 cask 'soundmate'
+cask 'hipchat'
 
 brew 'ack'
 brew 'apple-gcc42'
