@@ -26,6 +26,7 @@ cask 'soundmate'
 cask 'hipchat'
 cask 'postico'
 cask 'sequel-pro'
+cask 'flux'
 
 brew 'ack'
 brew 'apple-gcc42'
