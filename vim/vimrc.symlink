@@ -8,6 +8,8 @@ Plugin 'groenewege/vim-less'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'avakhov/vim-yaml'
 Plugin 'rizzatti/dash.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
@@ -33,6 +35,43 @@ let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 set guifont=Hack:h13
 set colorcolumn=80
+
+" Airline
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '#'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+
+" airline customization
+let g:airline_theme = 'tomorrow'
+let g:airline_powerline_fonts = 0
+let g:airline_section_y='' " hide encoding, format
+function! AirlineInit()
+  call airline#parts#define_raw('linenr', (g:airline_symbols.linenr) . '%l')
+  call airline#parts#define_raw('charnr', '%c')
+  let g:airline_section_z=airline#section#create(['linenr', ':', 'charnr']) " hide percentage, show line number and col number
+endfunction
+autocmd VimEnter * call AirlineInit()
+
 " use fancy cursor
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -86,15 +125,3 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Netrw
-" hide netrw top message
-let g:netrw_banner=0
-" tree listing by default
-let g:netrw_liststyle=3
-" open files in left window by default
-" let g:netrw_chgwin=1
