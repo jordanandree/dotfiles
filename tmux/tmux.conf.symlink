@@ -20,7 +20,7 @@ unbind %
 bind c new-window -c "#{pane_current_path}"
 
 # reload config file
-bind r source-file ~/.tmux.conf
+bind r source-file ~/.tmux.conf \; display "tmux reloaded"
 
 unbind p
 bind p previous-window
