@@ -71,6 +71,8 @@ bind-key u capture-pane \;\
 # Status Bar
 ###########################
 
+set -g default-terminal "screen-256color"
+
 # enable UTF-8 support in status bar
 set -g status-utf8 on
 
