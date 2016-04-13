@@ -84,10 +84,10 @@ set -g status-justify left
 
 # show session, window, pane in left status bar
 set -g status-left-length 40
-set -g status-left '#[bg=colour39]#[fg=colour232] #S '
+set -g status-left '#[bg=colour5]#[fg=colour232] #S '
 
 # show battery percentage, date, and time in right status bars
-set -g status-right '#[fg=colour242] #{battery_percentage} #[bg=colour39]#[fg=colour232] %I:%M%p '
+set -g status-right '#[fg=colour242] #{battery_percentage} #[bg=colour5]#[fg=colour232] %I:%M%p '
 
 ###########################
 # Display
@@ -108,8 +108,8 @@ set-window-option -g window-status-current-bg colour250
 # set color of active pane
 set -g pane-border-fg colour234
 set -g pane-border-bg colour234
-set -g pane-active-border-fg colour200
-set -g pane-active-border-bg black
+set -g pane-active-border-fg colour5
+set -g pane-active-border-bg colour5
 
 ###########################
 # Plugins
