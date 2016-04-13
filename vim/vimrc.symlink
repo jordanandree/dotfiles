@@ -34,7 +34,7 @@ set background=dark
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 set guifont=Hack:h13
-set colorcolumn=80
+set colorcolumn=90
 
 " Airline
 if !exists('g:airline_symbols')
@@ -97,6 +97,10 @@ set nobackup
 set hlsearch
 set ignorecase
 set smartcase
+
+" splits
+set splitright " open vsplit on the right
+set splitbelow " open split below current
 
 " set directory for undofiles
 " allows for history after a file has been closed
