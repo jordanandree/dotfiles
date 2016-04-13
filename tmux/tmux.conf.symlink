@@ -11,10 +11,13 @@ set -g base-index 1
 set -g pane-base-index 1
 
 # split panes using | and -
-bind | split-window -h
-bind - split-window -v
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
+
+# open new windows in same path
+bind c new-window -c "#{pane_current_path}"
 
 # reload config file
 bind r source-file ~/.tmux.conf
@@ -27,9 +30,6 @@ set -sg escape-time 1
 
 # don't rename windows automatically
 set-option -g allow-rename off
-
-# open new panes / windows in same path
-tmux set-option default-path "$PWD"
 
 # mouse control (clickable windows, panes, resizable panes)
 set -g mouse on
