@@ -27,6 +27,8 @@ cask 'hipchat'
 cask 'postico'
 cask 'sequel-pro'
 cask 'flux'
+cask 'vlc'
+cask 'franz'
 
 brew 'ack'
 brew 'apple-gcc42'
