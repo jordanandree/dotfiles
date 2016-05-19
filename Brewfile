@@ -29,6 +29,7 @@ cask 'sequel-pro'
 cask 'flux'
 cask 'vlc'
 cask 'franz'
+cask 'imageoptim'
 
 brew 'ack'
 brew 'apple-gcc42'
