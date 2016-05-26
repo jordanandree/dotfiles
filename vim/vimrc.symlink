@@ -1,28 +1,23 @@
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+" set the runtime path to include fzf
+set rtp+=~/.fzf
+
 call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'groenewege/vim-less'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'avakhov/vim-yaml'
-Plugin 'rizzatti/dash.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-markdown'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
+Plugin 'junegunn/fzf'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'avakhov/vim-yaml'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -110,16 +105,8 @@ set undodir=~/.vim/undodir
 " Tab between buffers
 noremap <tab> <c-w><c-w>
 
-" CtrlP
-nnoremap <silent> t :CtrlP<cr>
-let g:ctrlp_split_window = 1 " <CR> = New Tab
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_max_files = 15000
-let g:ctrlp_custom_ignore = {
-  \ 'dir' : '\v[\/]\.?(git|hg|svn|tmp|log|build|preview|bower_components|node_modules)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': ''
-  \ }
+" bind ctrl-p to FZF
+map <C-p> :FZF <enter>
 
 " Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
