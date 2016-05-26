@@ -97,3 +97,6 @@ fi
 
 # Docker
 eval "$(docker-machine env default)"
+
+# FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
