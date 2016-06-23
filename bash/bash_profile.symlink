@@ -104,3 +104,21 @@ export FZF_DEFAULT_COMMAND='
   (git ls-tree -r --name-only HEAD ||
    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
       sed s/^..//) 2> /dev/null'
+
+# Rails Migrations
+# http://robots.thoughtbot.com/workflows-for-writing-migrations-with-rollbacks-in-mind
+function migrate {
+  rake db:migrate db:rollback
+  if [ $? -eq 0 ] ; then
+    rake db:migrate db:test:prepare
+    try_annotate
+  fi
+}
+
+function try_annotate {
+  if hash annotate 2>/dev/null; then
+    annotate
+  else
+    echo '"annotate" is unavailable. consider installing the gem'
+  fi
+}
