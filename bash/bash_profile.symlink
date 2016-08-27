@@ -17,13 +17,17 @@ alias subl='reattach-to-user-namespace subl'
 alias cop='rubocop'
 
 # use nvim
-alias vim="nvim"
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
 
 # VPN Aliases
-source ~/.openconnect/aliases
-
-# Set editor to nvim
-export EDITOR='nvim'
+if [ -d "~/.openconnect" ]; then
+  . "~/.openconnect/aliases"
+fi
 
 # green path with git branch in bash prompt
 export PS1="\[\033[01;32m\] \w \[\033[0;32m\]\`ruby -e \"print (%x{git branch 2> /dev/null}.split(/\n/).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`\[\033[37m\]→\[\033[00m\] "
