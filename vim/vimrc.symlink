@@ -7,21 +7,36 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'neomake/neomake'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'junegunn/fzf'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'avakhov/vim-yaml'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
+
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
+
+Plugin 'junegunn/fzf'
+
+Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-rails'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-rake'
+
+Plugin 'pbrisbin/vim-mkdir'
+Plugin 'janko-m/vim-test'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Run NeoMake on read and write operations
+autocmd! BufReadPost,BufWritePost * Neomake
+
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
 
 " Colors and Syntax
 syntax on
@@ -110,6 +125,12 @@ noremap <tab> <c-w><c-w>
 map <C-p> :FZF <enter>
 
 " Syntastic
+" Disable inherited syntastic
+let g:syntastic_mode_map = {
+  \ "mode": "passive",
+  \ "active_filetypes": [],
+  \ "passive_filetypes": [] }
+
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_ruby_exec = '/.rvm/bin/rvm-auto-ruby'
 let g:syntastic_loc_list_height=5
