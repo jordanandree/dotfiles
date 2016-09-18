@@ -3,6 +3,7 @@ tap 'josegonzalez/php'
 tap 'homebrew/homebrew-versions'
 tap 'homebrew/dupes'
 tap 'homebrew/services'
+tap 'homebrew/completions'
 tap 'neovim/neovim'
 
 cask 'java'
