@@ -24,11 +24,6 @@ else
   export EDITOR='vim'
 fi
 
-# VPN Aliases
-if [ -d "~/.openconnect" ]; then
-  . "~/.openconnect/aliases"
-fi
-
 # green path with git branch in bash prompt
 export PS1="\[\033[01;32m\] \w \[\033[0;32m\]\`ruby -e \"print (%x{git branch 2> /dev/null}.split(/\n/).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`\[\033[37m\]→\[\033[00m\] "
 
@@ -123,3 +118,7 @@ function try_annotate {
     echo '"annotate" is unavailable. consider installing the gem'
   fi
 }
+
+if [ -f ~/.bash_profile.local ]; then
+  . ~/.bash_profile.local
+fi
