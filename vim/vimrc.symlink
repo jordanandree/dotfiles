@@ -17,7 +17,7 @@ Plugin 'tpope/vim-rhubarb'
 
 Plugin 'junegunn/fzf'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-rails'
