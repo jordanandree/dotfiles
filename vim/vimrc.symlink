@@ -30,6 +30,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'janko-m/vim-test'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
