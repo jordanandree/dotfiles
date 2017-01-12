@@ -135,7 +135,12 @@ let g:syntastic_mode_map = {
   \ "passive_filetypes": [] }
 
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_ruby_exec = '/.rvm/bin/rvm-auto-ruby'
+let g:syntastic_ruby_exec = '~/.rvm/bin/rvm-auto-ruby'
+
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_phpcs_args = "--standard=$codesniffer_ruleset --colors --tab-width=4"
+let g:syntastic_phpcs_exec = '~/.composer/vendor/bin/phpcs'
+
 let g:syntastic_loc_list_height=5
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
