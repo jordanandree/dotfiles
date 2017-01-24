@@ -91,9 +91,6 @@ if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
   . "$HOME/.scm_breeze/scm_breeze.sh"
 fi
 
-# Docker
-eval "$(docker-machine env default)"
-
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag -g ""'
