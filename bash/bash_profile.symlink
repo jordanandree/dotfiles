@@ -1,5 +1,6 @@
 # Set title to current directory
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+export GPG_TTY=${TTY}
 
 # bundler aliases
 alias b="bundle"
