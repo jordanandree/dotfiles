@@ -16,7 +16,6 @@ alias st='/Applications/SourceTree.app/Contents/Resources/stree'
 alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
 alias subl='reattach-to-user-namespace subl'
 alias cop='rubocop'
-alias grep='grep -n'
 
 # use nvim
 if type nvim > /dev/null 2>&1; then
