@@ -35,11 +35,17 @@ set-option -g allow-rename off
 set -g mouse on
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
 
-# Use Alt-arrow keys without prefix key to switch panes
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
+# Resize panes without prefix and arrow keys
+bind -n M-Down resize-pane -D 10
+bind -n M-Up resize-pane -U 10
+bind -n M-Left resize-pane -L 10
+bind -n M-Right resize-pane -R 10
+
+# Use prefix + arrow keys to switch panes
+bind Down select-pane -D
+bind Up select-pane -U
+bind Left select-pane -L
+bind Right select-pane -R
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
