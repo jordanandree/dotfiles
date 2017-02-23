@@ -14,7 +14,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
-
+Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'junegunn/fzf'
 
 Plugin 'vim-syntastic/syntastic'
