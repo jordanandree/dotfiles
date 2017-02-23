@@ -77,11 +77,6 @@ bind-key u capture-pane \;\
 # Status Bar
 ###########################
 
-set -g default-terminal "screen-256color"
-
-# enable UTF-8 support in status bar
-set -g status-utf8 on
-
 # set refresh interval for status bar
 set -g status-interval 30
 
@@ -90,32 +85,30 @@ set -g status-justify left
 
 # show session, window, pane in left status bar
 set -g status-left-length 40
-set -g status-left '#[bg=colour5]#[fg=colour232] #S '
+set -g status-left '#[fg=colour11] #S '
 
-# show battery percentage, date, and time in right status bars
-set -g status-right '#[fg=colour242] #{battery_percentage} #[bg=colour5]#[fg=colour232] %I:%M%p '
+# hide right status
+set -g status-right ''
 
 ###########################
 # Display
 ###########################
 
 # color status bar
-set -g status-bg colour232
+set -g status-bg colour233
 set -g status-fg white
 
 # highlight current window
 set-window-option -g window-status-format ' #W '
 set-window-option -g window-status-current-format ' #W '
 set-window-option -g window-status-fg colour242
-set-window-option -g window-status-bg colour232
-set-window-option -g window-status-current-fg colour232
-set-window-option -g window-status-current-bg colour250
+set-window-option -g window-status-bg colour233
+set-window-option -g window-status-current-fg colour14
+set-window-option -g window-status-current-bg colour233
 
-# set color of active pane
-set -g pane-border-fg colour234
-set -g pane-border-bg colour233
-set -g pane-active-border-fg colour5
-set -g pane-active-border-bg colour233
+# border colors
+set -g pane-border-fg colour59
+set -g pane-active-border-fg colour59
 
 ###########################
 # Plugins
@@ -123,7 +116,6 @@ set -g pane-active-border-bg colour233
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 
