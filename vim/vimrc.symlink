@@ -8,8 +8,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'neomake/neomake'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
@@ -49,50 +47,18 @@ set background=dark
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 set guifont=Hack:h13
-set colorcolumn=90
+set colorcolumn=0
 
-" Airline
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '#'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-
-" airline customization
-let g:airline_theme = 'tomorrow'
-let g:airline_powerline_fonts = 0
-let g:airline_section_y='' " hide encoding, format
-function! AirlineInit()
-  call airline#parts#define_raw('linenr', (g:airline_symbols.linenr) . '%l')
-  call airline#parts#define_raw('charnr', '%c')
-  let g:airline_section_z=airline#section#create(['linenr', ':', 'charnr']) " hide percentage, show line number and col number
-endfunction
-autocmd VimEnter * call AirlineInit()
+hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none
+hi TabLineSel   gui=bold ctermfg=14 ctermbg=233 cterm=bold
+hi TabLineFill  gui=none ctermfg=242 ctermbg=233 cterm=none
 
 " use fancy cursor
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 
-set cursorline
+set nocursorline
 set expandtab
 set modelines=0
 set shiftwidth=2
@@ -112,6 +78,11 @@ set nobackup
 set hlsearch
 set ignorecase
 set smartcase
+set showtabline=2
+set showmode
+set noruler
+set laststatus=0
+set noshowcmd
 
 " splits
 set splitright " open vsplit on the right
