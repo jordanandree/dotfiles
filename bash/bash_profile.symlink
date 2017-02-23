@@ -9,6 +9,11 @@ alias bi="bundle install"
 alias be="bundle exec"
 alias bs="bundle show"
 
+# tmux
+alias tl='tmux ls'
+alias tn='tmux -2 new -s'
+alias ta='tmux -2 attach -t'
+
 # others
 alias vm="vagrant"
 alias h="heroku"
