@@ -133,6 +133,11 @@ function! DrawInsertHighlight()
   hi StatusLine gui=none ctermfg=14 ctermbg=233
 endfunction
 
+" Replace mode is red
+function! DrawReplaceHighlight()
+  hi StatusLine gui=none ctermfg=1 ctermbg=233
+endfunction
+
 " Visual mode is yellowish
 function! DrawVisualHighlight()
   set updatetime=0
@@ -144,6 +149,8 @@ function! StatuslineColors(mode)
     call ResetHighlight()
   elseif a:mode == "i"
     call DrawInsertHighlight()
+  elseif a:mode == "r"
+    call DrawReplaceHighlight()
   elseif a:mode == "v" || a:mode == "V" || a:mode == "^V"
     call DrawVisualHighlight()
   endif
@@ -160,7 +167,7 @@ autocmd InsertLeave * call StatuslineColors(mode())
 autocmd CursorHold * call ResetHighlight()
 
 " default the statusline
-call DrawNormalHighlight()
+call ResetHighlight()
 
 " Formats the statusline
 set statusline=%f   " file name
