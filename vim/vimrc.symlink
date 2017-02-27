@@ -101,8 +101,8 @@ map <C-p> :FZF <enter>
 " Disable inherited syntastic
 let g:syntastic_mode_map = {
   \ "mode": "passive",
-  \ "active_filetypes": [],
-  \ "passive_filetypes": [] }
+  \ "active_filetypes": ["php", "rb"],
+  \ "passive_filetypes": ["php.erb"] }
 
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_ruby_exec = '~/.rvm/bin/rvm-auto-ruby'
