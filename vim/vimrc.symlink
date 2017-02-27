@@ -21,6 +21,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " syntax
 Plugin 'vim-syntastic/syntastic'
@@ -178,3 +179,7 @@ set statusline+=%r  " read only flag
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Google Chrome'
