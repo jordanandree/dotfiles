@@ -121,65 +121,74 @@ let g:syntastic_check_on_wq = 0
 hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none
 hi TabLineSel   gui=bold ctermfg=14  ctermbg=233 cterm=bold
 hi TabLineFill  gui=none ctermfg=242 ctermbg=233 cterm=none
+let g:currentmode={
+	\ 'n'  : 'Normal',
+	\ 'no' : 'N·Operator Pending',
+	\ 'v'  : 'Visual',
+	\ 'V'  : 'V·Line',
+	\ '' : 'V·Block',
+	\ 's'  : 'Select',
+	\ 'S'  : 'S·Line',
+	\ '' : 'S·Block',
+	\ 'i'  : 'Insert',
+	\ 'R'  : 'Replace',
+	\ 'Rv' : 'V·Replace',
+	\ 'c'  : 'Command',
+	\ 'cv' : 'Vim Ex',
+	\ 'ce' : 'Ex',
+	\ 'r'  : 'Prompt',
+	\ 'rm' : 'More',
+	\ 'r?' : 'Confirm',
+	\ '!'  : 'Shell',
+\}
+
+function! DrawInsertHighlight()
+  hi! StatusLine gui=none ctermfg=14 ctermbg=233
+endfunction
+
+function! DrawNormalHighlight()
+  hi! StatusLine gui=none ctermfg=233 ctermbg=250
+endfunction
+
+function! DrawReplaceHighlight()
+  hi! StatusLine gui=none ctermfg=1 ctermbg=233
+endfunction
+
+function! DrawVisualHighlight()
+  hi! StatusLine gui=none ctermfg=11 ctermbg=233
+endfunction
 
 " change statusline background color for modes
-" Reset back to normal state
-function! ResetHighlight()
-  set updatetime=4000
-  hi StatusLine gui=none ctermfg=233 ctermbg=250
-endfunction
-
-" Insert mode is greenish
-function! DrawInsertHighlight()
-  hi StatusLine gui=none ctermfg=14 ctermbg=233
-endfunction
-
-" Replace mode is red
-function! DrawReplaceHighlight()
-  hi StatusLine gui=none ctermfg=1 ctermbg=233
-endfunction
-
-" Visual mode is yellowish
-function! DrawVisualHighlight()
-  set updatetime=0
-  hi StatusLine gui=none ctermfg=11 ctermbg=233
-endfunction
-
-function! StatuslineColors(mode)
-  if a:mode == "n"
-    call ResetHighlight()
-  elseif a:mode == "i"
-    call DrawInsertHighlight()
-  elseif a:mode == "r"
-    call DrawReplaceHighlight()
-  elseif a:mode == "v" || a:mode == "V" || a:mode == "^V"
+function! ChangeStatuslineColors()
+  if (mode() =~# '\v(n|no)')
+    call DrawNormalHighlight()
+  elseif (mode() =~# '\v(v|V|^V)' || g:currentmode[mode()] ==# 'V·Block')
     call DrawVisualHighlight()
+  elseif (mode() ==# 'i')
+    call DrawInsertHighlight()
+  elseif (mode() =~# '\v(R|Rv)' || g:currentmode[mode()] ==# 'V·Replace')
+    call DrawReplaceHighlight()
+  else
+    call DrawNormalHighlight()
   endif
+
+  return ''
 endfunction
-
-" rebind v key to swap statusline colors
-vnoremap <silent> <expr> <SID>DrawVisualHighlight DrawVisualHighlight()
-nnoremap <silent> <script> v v<SID>DrawVisualHighlight
-nnoremap <silent> <script> V V<SID>DrawVisualHighlight
-nnoremap <silent> <script> <C-v> <C-v><SID>DrawVisualHighlight
-
-autocmd InsertEnter * call StatuslineColors(v:insertmode)
-autocmd InsertLeave * call StatuslineColors(mode())
-autocmd CursorHold * call ResetHighlight()
-
-" default the statusline
-call ResetHighlight()
 
 " Formats the statusline
-set statusline=%f   " file name
-set statusline+=%m  " modified flag
-set statusline+=%r  " read only flag
+let &stl  = ''
+let &stl .= '%{ChangeStatuslineColors()}'
+let &stl .= '[%{toupper(mode())}]'
+let &stl .= ' '      " Separator
+let &stl .= '%f'     " file name
+let &stl .= '%m'     " modified flag
+let &stl .= '%r'     " read only flag
+
+" Git info
+let &stl .= ' '
+let &stl .= '%{fugitive#statusline()} '   " Buffer's Git info
 
 " Puts in syntastic warnings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_github=1
-let vim_markdown_preview_browser='Google Chrome'
+let &stl .= '%#warningmsg#'
+let &stl .= '%{SyntasticStatuslineFlag()}'
+let &stl .=  '%*'
