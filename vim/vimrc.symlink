@@ -192,3 +192,7 @@ let &stl .= '%{fugitive#statusline()} '   " Buffer's Git info
 let &stl .= '%#warningmsg#'
 let &stl .= '%{SyntasticStatuslineFlag()}'
 let &stl .=  '%*'
+
+if filereadable(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
