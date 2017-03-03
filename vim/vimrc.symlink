@@ -140,6 +140,7 @@ let g:currentmode={
 	\ 'rm' : 'More',
 	\ 'r?' : 'Confirm',
 	\ '!'  : 'Shell',
+  \ 't'  : ''
 \}
 
 function! DrawInsertHighlight()
