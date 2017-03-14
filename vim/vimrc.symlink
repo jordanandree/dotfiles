@@ -57,6 +57,7 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 
+set updatetime=500
 set nocursorline
 set expandtab
 set modelines=0
