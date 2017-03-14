@@ -31,7 +31,7 @@ else
 fi
 
 # green path with git branch in bash prompt
-export PS1="\[\033[01;32m\] \w \[\033[0;32m\]\`ruby -e \"print (%x{git branch 2> /dev/null}.split(/\n/).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`\[\033[37m\]→\[\033[00m\] "
+. ~/bin/prompt
 
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
 . `brew --prefix`/etc/bash_completion.d/git-completion.bash
