@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+update () {
+  # Update brew
+  brew up
+
+  # Update rvm
+  rvm get stable
+
+  # Update scm_breeze
+  update_scm_breeze
+
+  # Update vim plugins
+  vim +PluginUpdate +qa
+
+  echo "Update finished"
+}
+
+cleanup () {
+  # Cleanup brew
+  brew cleanup
+
+  # Cleanup rvm
+  rvm cleanup all
+
+  echo "Cleanup done"
+}
+
+update
+
+if [ "$1" = "--clean" ]; then
+  cleanup
+fi
