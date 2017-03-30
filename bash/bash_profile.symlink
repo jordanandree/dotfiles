@@ -22,6 +22,14 @@ alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulato
 alias subl='reattach-to-user-namespace subl'
 alias cop='rubocop'
 
+# use nvim
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
+
 # green path with git branch in bash prompt
 . ~/bin/prompt
 
