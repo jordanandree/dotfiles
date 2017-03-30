@@ -1,0 +1,54 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.3.0)
+    haml (4.0.7)
+      tilt
+    haml_lint (0.24.0)
+      haml (>= 4.0, < 5.1)
+      rainbow
+      rake (>= 10, < 13)
+      rubocop (>= 0.47.0)
+      sysexits (~> 1.1)
+    parser (2.4.0.0)
+      ast (~> 2.2)
+    powerpack (0.1.1)
+    rainbow (2.2.1)
+    rake (12.0.0)
+    rubocop (0.48.0)
+      parser (>= 2.3.3.1, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-progressbar (1.8.1)
+    sass (3.4.23)
+    scss_lint (0.52.0)
+      rake (>= 0.9, < 13)
+      sass (~> 3.4.20)
+    slim (3.0.7)
+      temple (~> 0.7.6)
+      tilt (>= 1.3.3, < 2.1)
+    slim_lint (0.12.0)
+      rake (>= 10, < 13)
+      rubocop (>= 0.48.0)
+      slim (~> 3.0)
+      sysexits (~> 1.1)
+    sysexits (1.2.0)
+    temple (0.7.7)
+    tilt (2.0.7)
+    unicode-display_width (1.1.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  haml_lint
+  rake
+  rubocop
+  scss_lint
+  slim_lint
+
+BUNDLED WITH
+   1.14.5
