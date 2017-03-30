@@ -8,20 +8,35 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" utils
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'MattesGroeger/vim-bookmarks'
-Plugin 'junegunn/fzf'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-eunuch'
-Plugin 'pbrisbin/vim-mkdir'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'w0rp/ale' " Linter
+" ----------------
+" Plugins
+" ----------------
 
-" syntax
+" Utilities
+" inline git status
+Plugin 'airblade/vim-gitgutter'
+" Git for vim
+Plugin 'tpope/vim-fugitive'
+" Gbrowse for files or lines
+Plugin 'tpope/vim-rhubarb'
+" Bookmark lines
+Plugin 'MattesGroeger/vim-bookmarks'
+" FZF file search
+Plugin 'junegunn/fzf'
+" comment files with keyboard shortcuts
+Plugin 'tpope/vim-commentary'
+" UNIX file commands
+Plugin 'tpope/vim-eunuch'
+" :e any/non/existant/path.txt to create it
+Plugin 'pbrisbin/vim-mkdir'
+" recognize .editorconfig files
+Plugin 'editorconfig/editorconfig-vim'
+" Preview markdown with grip
+Plugin 'JamshedVesuna/vim-markdown-preview'
+" Linter for all the things
+Plugin 'w0rp/ale'
+
+" Syntax
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'kchmck/vim-coffee-script'
@@ -55,9 +70,7 @@ set modelines=0
 set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=128
-if !has('nvim')
-  set ttyscroll=10
-endif
+set ttyscroll=10
 set encoding=utf-8
 set tabstop=2
 set wrap
