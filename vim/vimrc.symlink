@@ -58,6 +58,11 @@ let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palett
 set guifont=Menlo:h13
 set colorcolumn=0
 
+" use fancy cursor
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
+
 " Syntax for files
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
 autocmd BufNewFile,BufRead Dockerfile* set syntax=sh
@@ -70,7 +75,9 @@ set modelines=0
 set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=128
-set ttyscroll=10
+if !has('nvim')
+  set ttyscroll=10
+endif
 set encoding=utf-8
 set tabstop=2
 set wrap
