@@ -35,16 +35,18 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 " Linter for all the things
 Plugin 'w0rp/ale'
-
-" Syntax
-Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-endwise'
+" Rake in vim
 Plugin 'tpope/vim-rake'
+" Rails commands and rails-specific syntax
+Plugin 'tpope/vim-rails'
+" auto-add 'end' and 'endif'
+Plugin 'tpope/vim-endwise'
+" Ruby syntax
+Plugin 'vim-ruby/vim-ruby'
+" CoffeeScript syntax
+Plugin 'kchmck/vim-coffee-script'
+" ES6 syntax and snippets
 Plugin 'isRuslan/vim-es6'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'keith/swift.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
