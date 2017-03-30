@@ -44,17 +44,11 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # NPM modules
 export PATH="/usr/local/share/npm/bin:$PATH"
 
-# Android SDK
-export PATH="$PATH:~/bin/sdk/platform-tools"
-
 # Composer global packages
-export PATH="$PATH:~/.composer/vendor/bin"
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # Homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
-
-# Erlang
-export PATH="$PATH:/path/to/elixir/bin"
 
 # virtualenv should use Distribute instead of legacy setuptools
 export VIRTUALENV_DISTRIBUTE=true
@@ -73,7 +67,7 @@ export MAVEN_OPTS=-Xmx2048m
 export JVM_ARGS="-d64 -Xms2048m -Xmx15360m -server"
 
 # added by Anaconda2 2.4.0 installer
-export PATH="/Users/jordanandree/anaconda/bin:$PATH"
+export PATH="$HOME/anaconda/bin:$PATH"
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
