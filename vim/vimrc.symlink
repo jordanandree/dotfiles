@@ -8,9 +8,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" asynchronously run programs
-Plugin 'neomake/neomake'
-
 " utils
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
@@ -22,9 +19,9 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'w0rp/ale' " Linter
 
 " syntax
-Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'kchmck/vim-coffee-script'
@@ -36,12 +33,6 @@ Plugin 'keith/swift.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-" Run NeoMake on read and write operations
-autocmd! BufReadPost,BufWritePost * Neomake
-
-let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 1
 
 " Colors and Syntax
 syntax on
@@ -98,25 +89,14 @@ noremap <tab> <c-w><c-w>
 " bind ctrl-p to FZF
 map <C-p> :FZF <enter>
 
-" Syntastic
-" Disable inherited syntastic
-let g:syntastic_mode_map = {
-  \ "mode": "passive",
-  \ "active_filetypes": ["php", "rb"],
-  \ "passive_filetypes": ["php.erb"] }
-
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_ruby_exec = '~/.rvm/bin/rvm-auto-ruby'
-
-let g:syntastic_php_checkers = ['php', 'phpcs']
-let g:syntastic_php_phpcs_args = "--standard=$codesniffer_ruleset --colors --tab-width=4"
-let g:syntastic_phpcs_exec = '~/.composer/vendor/bin/phpcs'
-
-let g:syntastic_loc_list_height=5
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" Linters
+let g:ale_php_phpcs_standard = $codesniffer_ruleset
+" open error loclist
+let g:ale_open_list = 1
+" Dont check as text is changed
+let g:ale_lint_on_text_changed = 0
+" Dont run on enter
+let g:ale_lint_on_enter = 0
 
 " ui colors for statusline
 hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none
@@ -190,9 +170,9 @@ let &stl .= '%r'     " read only flag
 let &stl .= ' '
 let &stl .= '%{fugitive#statusline()} '   " Buffer's Git info
 
-" Puts in syntastic warnings
+" Linter info
 let &stl .= '%#warningmsg#'
-let &stl .= '%{SyntasticStatuslineFlag()}'
+let &stl .= "%{ALEGetStatusLine()}"
 let &stl .=  '%*'
 
 if filereadable(glob("~/.vimrc.local"))
