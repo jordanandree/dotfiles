@@ -47,14 +47,10 @@ set colorcolumn=0
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
 autocmd BufNewFile,BufRead Dockerfile* set syntax=sh
 
-" use fancy cursor
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-endif
-
 set updatetime=500
 set nocursorline
 set expandtab
+set backspace=2
 set modelines=0
 set shiftwidth=2
 set clipboard=unnamed
