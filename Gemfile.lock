@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.3.0)
+    awesome_print (1.7.0)
     haml (4.0.7)
       tilt
     haml_lint (0.24.0)
@@ -43,6 +44,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   bundler
   haml_lint
   rake
