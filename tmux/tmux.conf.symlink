@@ -1,8 +1,8 @@
-# change the prefix from 'C-b' to 'C-a'
+# change the prefix from 'C-b' to 'C-q'
 # (remap capslock to CTRL for easy access)
 unbind C-b
-set-option -g prefix C-a
-bind-key C-a send-prefix
+set-option -g prefix C-q
+bind-key C-q send-prefix
 
 # start with window 1 (instead of 0)
 set -g base-index 1
@@ -12,7 +12,9 @@ set -g pane-base-index 1
 
 # split panes using | and -
 bind | split-window -h -c "#{pane_current_path}"
+bind \ split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
+bind _ split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 
