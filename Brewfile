@@ -1,4 +1,3 @@
-tap 'caskroom/cask'
 tap 'homebrew/apache'
 tap 'homebrew/boneyard'
 tap 'homebrew/bundle'
