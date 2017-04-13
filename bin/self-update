@@ -10,6 +10,10 @@ update () {
   # Update scm_breeze
   update_scm_breeze
 
+  # Update bundler / rubygems
+  rvm all do gem update system
+  rvm all do gem update bundler
+
   # Update vim plugins
   vim +PluginUpdate +qa
 
