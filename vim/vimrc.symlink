@@ -70,6 +70,7 @@ endif
 " Syntax for files
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
 autocmd BufNewFile,BufRead Dockerfile* set syntax=sh
+autocmd BufNewFile,BufRead *.pp set syntax=ruby
 
 set updatetime=500
 set nocursorline
