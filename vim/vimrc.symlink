@@ -114,6 +114,11 @@ noremap <tab> <c-w><c-w>
 " bind ctrl-p to FZF
 map <C-p> :FZF <enter>
 
+" markdown preview
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=1
+
 " Linters
 let g:ale_php_phpcs_standard = $codesniffer_ruleset
 " open error loclist
