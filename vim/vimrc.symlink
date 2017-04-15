@@ -51,6 +51,8 @@ Plugin 'isRuslan/vim-es6'
 Plugin 'slim-template/vim-slim'
 " Crystal
 Plugin 'rhysd/vim-crystal'
+" VIML tests
+Plugin 'junegunn/vader.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
