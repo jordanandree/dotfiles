@@ -49,6 +49,10 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'isRuslan/vim-es6'
 " Slim
 Plugin 'slim-template/vim-slim'
+" Crystal
+Plugin 'rhysd/vim-crystal'
+" VIML tests
+Plugin 'junegunn/vader.vim'
 
 " ctags integration
 Plugin 'jakedouglas/exuberant-ctags'
