@@ -50,6 +50,14 @@ Plugin 'isRuslan/vim-es6'
 " Slim
 Plugin 'slim-template/vim-slim'
 
+" ctags integration
+Plugin 'jakedouglas/exuberant-ctags'
+" show ctags in sidebar
+Plugin 'majutsushi/tagbar'
+" phpctags support
+Plugin 'vim-php/tagbar-phpctags.vim'
+" autoclose braces, brackets, etc
+Plugin 'Townk/vim-autoclose'
 
 " -------------
 " Color Pallete
@@ -77,6 +85,8 @@ set colorcolumn=0
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
+
+:set tags=./tags;
 
 " Syntax for files
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
