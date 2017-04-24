@@ -50,11 +50,22 @@ Plugin 'isRuslan/vim-es6'
 " Slim
 Plugin 'slim-template/vim-slim'
 
+
+" -------------
+" Color Pallete
+" -------------
+Plugin 'w0ng/vim-hybrid'
+Plugin 'colepeters/spacemacs-theme.vim'
+Plugin 'AlessandroYorba/Sierra'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Colors and Syntax
 syntax on
+if (has("termguicolors"))
+  set termguicolors
+endif
 colorscheme hybrid
 set background=dark
 let g:hybrid_custom_term_colors = 1
