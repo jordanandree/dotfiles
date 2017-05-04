@@ -233,3 +233,5 @@ let &stl .= '%*'
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+set mouse=a
