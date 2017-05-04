@@ -54,11 +54,7 @@ setw -g mode-keys vi
 
 # Setup 'v' to begin selection as in Vim
 bind-key -T copy-mode-vi v send -X begin-selection
-bind-key -T copy-mode-vi y send -X copy-pipe "reattach-to-user-namespace pbcopy"
-
-# Update default binding of `Enter` to also use copy-pipe
-unbind -T copy-mode-vi Enter
-bind-key -T copy-mode-vi Enter send -X copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi y send -X copy-pipe "reattach-to-user-namespace pbcopy" \; display "Copied text to clipboard" \; send-keys -X cancel
 
 # set default terminal mode to 256 colors
 set -g default-terminal "screen-256color"
