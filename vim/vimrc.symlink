@@ -53,6 +53,8 @@ Plugin 'slim-template/vim-slim'
 Plugin 'rhysd/vim-crystal'
 " VIML tests
 Plugin 'junegunn/vader.vim'
+" Distraction free mode
+Plugin 'junegunn/goyo.vim'
 
 " ctags integration
 Plugin 'jakedouglas/exuberant-ctags'
