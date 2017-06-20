@@ -95,8 +95,11 @@ endif
 :set tags=./tags;
 
 " Syntax for files
+autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
+autocmd BufNewFile,BufRead Dockerfile* set filetype=sh
 autocmd BufNewFile,BufRead Dockerfile* set syntax=sh
+autocmd BufNewFile,BufRead *.pp set filetype=ruby
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
 
 set updatetime=500

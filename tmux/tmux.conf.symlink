@@ -27,6 +27,9 @@ bind r source-file ~/.tmux.conf \; display "tmux reloaded"
 unbind p
 bind p previous-window
 
+# skip confirmation to kill a pane
+bind-key x kill-pane
+
 # shorten command delay
 set -sg escape-time 0
 
