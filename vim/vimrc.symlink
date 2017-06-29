@@ -55,6 +55,8 @@ Plugin 'rhysd/vim-crystal'
 Plugin 'junegunn/vader.vim'
 " Distraction free mode
 Plugin 'junegunn/goyo.vim'
+" Show me the whitespace
+Plugin 'ntpeters/vim-better-whitespace'
 
 " ctags integration
 Plugin 'jakedouglas/exuberant-ctags'
