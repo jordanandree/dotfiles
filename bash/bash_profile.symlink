@@ -69,6 +69,9 @@ export JVM_ARGS="-d64 -Xms2048m -Xmx15360m -server"
 # added by Anaconda2 2.4.0 installer
 export PATH="$HOME/anaconda/bin:$PATH"
 
+# Go bin
+export PATH="$PATH:$HOME/go/bin"
+
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export rvmsudo_secure_path=1
@@ -81,7 +84,7 @@ fi
 
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='rg --files --ignore-case --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden --follow --glob "!.git/*"'
 
 # Rails Migrations
 # http://robots.thoughtbot.com/workflows-for-writing-migrations-with-rollbacks-in-mind
