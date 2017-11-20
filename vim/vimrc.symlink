@@ -141,6 +141,9 @@ noremap <tab> <c-w><c-w>
 " bind ctrl-p to FZF
 map <C-p> :FZF <enter>
 
+" Remove Ex mode
+map Q <Nop>
+
 " markdown preview
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
