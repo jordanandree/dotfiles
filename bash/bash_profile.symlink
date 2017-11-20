@@ -87,6 +87,9 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden --follow --glob "!.git/*"'
 
+# Popup fzf in pwd. enter key opens in vim
+bind -x '"\C-p": vim $(fzf);'
+
 # Rails Migrations
 # http://robots.thoughtbot.com/workflows-for-writing-migrations-with-rollbacks-in-mind
 function migrate {
