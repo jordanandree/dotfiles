@@ -13,6 +13,7 @@ alias bs="bundle show"
 alias tl='tmux ls'
 alias tn='tmux -2 new -s'
 alias ta='tmux -2 attach -t'
+alias td='tmux detach-client'
 
 # others
 alias vm="vagrant"
