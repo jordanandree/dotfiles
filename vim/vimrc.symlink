@@ -57,13 +57,8 @@ Plugin 'junegunn/vader.vim'
 Plugin 'junegunn/goyo.vim'
 " Show me the whitespace
 Plugin 'ntpeters/vim-better-whitespace'
-
-" ctags integration
-Plugin 'jakedouglas/exuberant-ctags'
-" show ctags in sidebar
-Plugin 'majutsushi/tagbar'
-" phpctags support
-Plugin 'vim-php/tagbar-phpctags.vim'
+" Golang
+Plugin 'fatih/vim-go'
 " autoclose braces, brackets, etc
 Plugin 'Townk/vim-autoclose'
 
