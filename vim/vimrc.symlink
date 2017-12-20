@@ -106,7 +106,7 @@ set backspace=2
 set modelines=0
 set shiftwidth=2
 set clipboard=unnamed
-set synmaxcol=128
+set synmaxcol=0
 if !has('nvim')
   set ttyscroll=10
 endif
