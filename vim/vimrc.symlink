@@ -17,6 +17,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 " Git for vim
 Plugin 'tpope/vim-fugitive'
+" Github gist
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 " Gbrowse for files or lines
 Plugin 'tpope/vim-rhubarb'
 " Bookmark lines
@@ -160,6 +163,7 @@ let g:ale_lint_on_enter = 0
 
 let g:ale_linters = {
 \   'html': [],
+\   'php': ['php', 'phpcs'],
 \}
 
 " ui colors for statusline
