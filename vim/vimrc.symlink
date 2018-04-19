@@ -1,12 +1,7 @@
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
 " set the runtime path to include fzf
 set rtp+=~/.fzf
 
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.local/share/nvim/plugged')
 
 " ----------------
 " Plugins
@@ -14,65 +9,65 @@ Plugin 'gmarik/Vundle.vim'
 
 " Utilities
 " inline git status
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Git for vim
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Github gist
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 " Gbrowse for files or lines
-Plugin 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rhubarb'
 " Bookmark lines
-Plugin 'MattesGroeger/vim-bookmarks'
+Plug 'MattesGroeger/vim-bookmarks'
 " FZF file search
-Plugin 'junegunn/fzf'
+Plug 'junegunn/fzf'
 " comment files with keyboard shortcuts
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " UNIX file commands
-Plugin 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 " :e any/non/existant/path.txt to create it
-Plugin 'pbrisbin/vim-mkdir'
+Plug 'pbrisbin/vim-mkdir'
 " recognize .editorconfig files
-Plugin 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 " Preview markdown with grip
-Plugin 'JamshedVesuna/vim-markdown-preview'
+Plug 'JamshedVesuna/vim-markdown-preview'
 " Linter for all the things
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 " Rake in vim
-Plugin 'tpope/vim-rake'
+Plug 'tpope/vim-rake'
 " Rails commands and rails-specific syntax
-Plugin 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 " auto-add 'end' and 'endif'
-Plugin 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 " Ruby syntax
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 " CoffeeScript syntax
-Plugin 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script'
 " ES6 syntax and snippets
-Plugin 'isRuslan/vim-es6'
+Plug 'isRuslan/vim-es6'
 " Slim
-Plugin 'slim-template/vim-slim'
+Plug 'slim-template/vim-slim'
 " Crystal
-Plugin 'rhysd/vim-crystal'
+Plug 'rhysd/vim-crystal'
 " VIML tests
-Plugin 'junegunn/vader.vim'
+Plug 'junegunn/vader.vim'
 " Distraction free mode
-Plugin 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 " Show me the whitespace
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 " Golang
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 " autoclose braces, brackets, etc
-Plugin 'Townk/vim-autoclose'
+Plug 'Townk/vim-autoclose'
 
 " -------------
 " Color Pallete
 " -------------
-Plugin 'w0ng/vim-hybrid'
-Plugin 'colepeters/spacemacs-theme.vim'
-Plugin 'AlessandroYorba/Sierra'
+Plug 'w0ng/vim-hybrid'
 
-call vundle#end()            " required
+" Initialize plugin system
+call plug#end()
+
 filetype plugin indent on    " required
 
 " Colors and Syntax
