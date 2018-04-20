@@ -29,8 +29,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'pbrisbin/vim-mkdir'
 " recognize .editorconfig files
 Plug 'editorconfig/editorconfig-vim'
-" Preview markdown with grip
-Plug 'JamshedVesuna/vim-markdown-preview'
 " Linter for all the things
 Plug 'w0rp/ale'
 " Rake in vim
@@ -59,6 +57,11 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'fatih/vim-go'
 " autoclose braces, brackets, etc
 Plug 'Townk/vim-autoclose'
+" alignment
+Plug 'junegunn/vim-easy-align'
+
+Plug 'ekalinin/Dockerfile.vim'
+
 
 " -------------
 " Color Pallete
@@ -92,8 +95,6 @@ endif
 " Syntax for files
 autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
-autocmd BufNewFile,BufRead Dockerfile* set filetype=sh
-autocmd BufNewFile,BufRead Dockerfile* set syntax=sh
 autocmd BufNewFile,BufRead *.pp set filetype=ruby
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
 
@@ -123,6 +124,7 @@ set showtabline=2
 set noshowmode
 set noruler
 set noshowcmd
+set hidden
 
 " splits
 set splitright " open vsplit on the right
@@ -136,16 +138,15 @@ set undodir=~/.vim/undodir
 " Tab between buffers
 noremap <tab> <c-w><c-w>
 
+nmap <C-]> :tabnext<CR>
+nmap <C-[> :tabprevious<CR>
+nunmap <Esc>
+
 " bind ctrl-p to FZF
 map <C-p> :FZF <enter>
 
 " Remove Ex mode
 map Q <Nop>
-
-" markdown preview
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_github=1
 
 " Linters
 let g:ale_php_phpcs_standard = $codesniffer_ruleset
@@ -188,19 +189,19 @@ let g:currentmode={
 \}
 
 function! DrawInsertHighlight()
-  hi! StatusLine gui=none ctermfg=14 ctermbg=233
+  hi! statusline gui=none ctermfg=14 ctermbg=233
 endfunction
 
 function! DrawNormalHighlight()
-  hi! StatusLine gui=none ctermfg=233 ctermbg=250
+  hi! statusline gui=none ctermfg=233 ctermbg=250
 endfunction
 
 function! DrawReplaceHighlight()
-  hi! StatusLine gui=none ctermfg=1 ctermbg=233
+  hi! statusline gui=none ctermfg=1 ctermbg=233
 endfunction
 
 function! DrawVisualHighlight()
-  hi! StatusLine gui=none ctermfg=11 ctermbg=233
+  hi! statusline gui=none ctermfg=11 ctermbg=233
 endfunction
 
 " change statusline background color for modes
@@ -234,8 +235,21 @@ let &stl .= ' '
 let &stl .= '%{fugitive#statusline()} '   " Buffer's Git info
 
 " Linter info
-let &stl .= '%#warningmsg#'
-let &stl .= " %{ALEGetStatusLine()} "
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+let &stl.= '%#warningmsg#'
+let &stl .= " %{LinterStatus()} "
 let &stl .= '%*'
 
 if filereadable(glob("~/.vimrc.local"))
