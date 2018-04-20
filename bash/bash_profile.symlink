@@ -3,7 +3,6 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 export GPG_TTY=$(tty)
 
 # bundler aliases
-alias b="bundle"
 alias bu="bundle update"
 alias bi="bundle install"
 alias be="bundle exec"
@@ -15,13 +14,8 @@ alias tn='tmux -2 new -s'
 alias ta='tmux -2 attach -t'
 alias td='tmux detach-client'
 
-# others
-alias vm="vagrant"
-alias h="heroku"
+# SourceTree
 alias st='/Applications/SourceTree.app/Contents/Resources/stree'
-alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
-alias subl='reattach-to-user-namespace subl'
-alias cop='rubocop'
 
 # use nvim
 if type nvim > /dev/null 2>&1; then
@@ -33,6 +27,12 @@ fi
 
 # green path with git branch in bash prompt
 . ~/bin/prompt
+
+# GPG
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+eval "$(gpg-agent)"
+
+ssh-add -A 2>/dev/null;
 
 # Load bash completions
 if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -51,27 +51,11 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 # Homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
-# virtualenv should use Distribute instead of legacy setuptools
-export VIRTUALENV_DISTRIBUTE=true
-# Centralized location for new virtual environments
-export PIP_VIRTUALENV_BASE="$HOME/Virtualenvs"
-# pip should only run if there is a virtualenv currently activated
-# export PIP_REQUIRE_VIRTUALENV=true
-# cache pip-installed packages to avoid re-downloading
-export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
-
-# Maven
-export PATH=$PATH:/usr/local/apache-maven-3.2.3/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
-export PATH=$PATH:$JAVA_HOME
-export MAVEN_OPTS=-Xmx2048m
-export JVM_ARGS="-d64 -Xms2048m -Xmx15360m -server"
-
-# added by Anaconda2 2.4.0 installer
-export PATH="$HOME/anaconda/bin:$PATH"
-
 # Go bin
 export PATH="$PATH:$HOME/go/bin"
+
+# Docker
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -84,29 +68,15 @@ if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
 fi
 
 # FZF
+export FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden --glob "!.git/*"'
+export FZF_DEFAULT_OPTS='--height 50% --reverse'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden --follow --glob "!.git/*"'
 
 # Popup fzf in pwd. enter key opens in vim
 bind -x '"\C-p": vim $(fzf);'
 
-# Rails Migrations
-# http://robots.thoughtbot.com/workflows-for-writing-migrations-with-rollbacks-in-mind
-function migrate {
-  rake db:migrate db:rollback
-  if [ $? -eq 0 ] ; then
-    rake db:migrate db:test:prepare
-    try_annotate
-  fi
-}
-
-function try_annotate {
-  if hash annotate 2>/dev/null; then
-    annotate
-  else
-    echo '"annotate" is unavailable. consider installing the gem'
-  fi
-}
+# Never run the lpass agent
+LPASS_AGENT_DISABLE=1
 
 if [ -f ~/.bash_profile.local ]; then
   . ~/.bash_profile.local

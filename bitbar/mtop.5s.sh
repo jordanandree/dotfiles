@@ -206,7 +206,7 @@ echo "---"
 echo "$cpustr | refresh=true"
 echo "$loadstr | refresh=true"
 echo "---"
-top5=("${top5[@]/%/| font=Menlo}")
+top5=("${top5[@]/%/| color=#eeeeee font=Menlo}")
 IFS=$'\n'
 echo "${top5[*]}"
 IFS=$OLDIFS
