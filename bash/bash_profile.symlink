@@ -14,8 +14,8 @@ alias tn='tmux -2 new -s'
 alias ta='tmux -2 attach -t'
 alias td='tmux detach-client'
 
-# SourceTree
-alias st='/Applications/SourceTree.app/Contents/Resources/stree'
+# Fork
+alias fork='/Applications/Fork.app/Contents/Resources/fork_cli'
 
 # use nvim
 if type nvim > /dev/null 2>&1; then
