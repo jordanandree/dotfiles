@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-old_name=$1;
-new_name=$2;
-
-# Rename directories and files
-find ./app/* ./test/* ./config/* ./lib/*  -name "*$old_name*" | sed -e "p;s/$old_name/$new_name/" | xargs -n2 mv
-
-grep -rl $old_name ./app/* ./test/* ./lib/* ./config/* ./db/seeds.rb | xargs sed -i '' "s/$old_name/$new_name/g"
