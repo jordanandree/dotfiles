@@ -61,6 +61,7 @@ Plug 'Townk/vim-autoclose'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'cespare/vim-toml'
 
 
 " -------------
@@ -71,10 +72,10 @@ Plug 'w0ng/vim-hybrid'
 " Initialize plugin system
 call plug#end()
 
-filetype plugin indent on    " required
 
 " Colors and Syntax
 syntax on
+filetype plugin indent on    " required
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -85,11 +86,6 @@ let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palett
 set guifont=Fira:h13
 set colorcolumn=0
 
-" use fancy cursor
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-endif
-
 :set tags=./tags;
 
 " Syntax for files
@@ -97,6 +93,7 @@ autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
 autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
 autocmd BufNewFile,BufRead *.pp set filetype=ruby
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
+autocmd FileType go set shiftwidth=4 tabstop=4
 
 set updatetime=500
 set nocursorline
@@ -148,19 +145,12 @@ map <C-p> :FZF <enter>
 " Remove Ex mode
 map Q <Nop>
 
-" Linters
-let g:ale_php_phpcs_standard = $codesniffer_ruleset
 " open error loclist
 let g:ale_open_list = 1
 " Dont check as text is changed
 let g:ale_lint_on_text_changed = 0
 " Dont run on enter
 let g:ale_lint_on_enter = 0
-
-let g:ale_linters = {
-\   'html': [],
-\   'php': ['php', 'phpcs'],
-\}
 
 " ui colors for statusline
 hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none

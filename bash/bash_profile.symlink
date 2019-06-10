@@ -17,6 +17,8 @@ alias td='tmux detach-client'
 # Fork
 alias fork='/Applications/Fork.app/Contents/Resources/fork_cli'
 
+alias edit_hosts="sudo nvim -u NONE /etc/hosts"
+
 # use nvim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -32,7 +34,7 @@ fi
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 eval "$(gpg-agent)"
 
-ssh-add -A 2>/dev/null;
+ssh-add -A -t 4h 2>/dev/null;
 
 # Load bash completions
 if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -49,18 +51,18 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # Homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Go bin
-export PATH="$PATH:$HOME/go/bin"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # Docker
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-export rvmsudo_secure_path=1
-export PATH="$PATH:$HOME/.rvm/bin"
+# Chruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 
 # SCM Breeze
 if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
