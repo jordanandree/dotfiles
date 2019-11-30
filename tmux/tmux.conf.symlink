@@ -76,7 +76,7 @@ bind-key u capture-pane \;\
 ###########################
 
 # set refresh interval for status bar
-set -g status-interval 30
+set -g status-interval 5
 
 # center the status bar
 set -g status-justify left
@@ -96,9 +96,11 @@ set -g status-right ''
 set -g status-bg colour233
 set -g status-fg white
 
+# use current directory basename as window names
+set -g window-status-format '#(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
+set -g window-status-current-format '#(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
+
 # highlight current window
-set-window-option -g window-status-format ' #W '
-set-window-option -g window-status-current-format ' #W '
 set-window-option -g window-status-style fg=colour242,bg=colour233
 set-window-option -g window-status-current-style fg=colour14,bg=colour233
 
