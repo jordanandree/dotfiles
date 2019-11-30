@@ -1,5 +1,6 @@
 # Set title to current directory
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a"
 export GPG_TTY=$(tty)
 
 # bundler aliases
@@ -83,3 +84,14 @@ LPASS_AGENT_DISABLE=1
 if [ -f ~/.bash_profile.local ]; then
   . ~/.bash_profile.local
 fi
+
+# Setup history
+export HISTTIMEFORMAT="%h %d %H:%M:%S "
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
+# Avoid duplicates
+HISTCONTROL=ignoredups:erasedups
+
+# append to history on exit
+shopt -s histappend
