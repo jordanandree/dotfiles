@@ -17,6 +17,8 @@ Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
 " Gbrowse for files or lines
 Plug 'tpope/vim-rhubarb'
+" code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Bookmark lines
 Plug 'MattesGroeger/vim-bookmarks'
 " FZF file search
