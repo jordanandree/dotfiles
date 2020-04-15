@@ -97,6 +97,11 @@ autocmd BufNewFile,BufRead *.pp set filetype=ruby
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
 autocmd FileType go set shiftwidth=4 tabstop=4
 
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
 set updatetime=500
 set nocursorline
 set expandtab
