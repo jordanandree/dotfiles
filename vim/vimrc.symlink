@@ -91,8 +91,9 @@ set colorcolumn=0
 :set tags=./tags;
 
 " Syntax for files
-autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
-autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
+
+autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy shiftwidth=4 tabstop=4
+autocmd FileType groovy set shiftwidth=4 tabstop=4
 autocmd BufNewFile,BufRead *.pp set filetype=ruby
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
 autocmd FileType go set shiftwidth=4 tabstop=4
