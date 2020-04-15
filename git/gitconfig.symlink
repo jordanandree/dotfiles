@@ -1,6 +1,8 @@
 [user]
   name = jordanandree
   email = jordanandree@gmail.com
+	name = Jordan Andree
+  signingkey = "B739A3F08B5669B19CCC3B556CA4641624683284"
 [color]
   branch = auto
   diff = auto
@@ -25,6 +27,7 @@
   br = branch
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   tree = log --oneline --decorate --graph
+  purgeBranches = "!f() { git branch --merged ${1-master} | grep -v \" ${1-master}$\" | xargs -n 1 git branch -d; }; f"
 [apply]
   whitespace = nowarn
 [core]
@@ -33,7 +36,6 @@
 	editor = nvim
 [push]
   default = current
-[heroku]
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -42,3 +44,7 @@
 	trustExitCode = true
 [init]
   templatedir = /Users/jandree/.git-templates
+[commit]
+	gpgsign = true
+[gpg]
+  program = gpg
