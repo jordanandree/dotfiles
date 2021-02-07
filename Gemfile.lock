@@ -3,7 +3,8 @@ GEM
   specs:
     ast (2.4.0)
     awesome_print (1.7.0)
-    haml (4.0.7)
+    haml (5.0.4)
+      temple (>= 0.8.0)
       tilt
     haml_lint (0.24.0)
       haml (>= 4.0, < 5.1)
@@ -29,8 +30,8 @@ GEM
     scss_lint (0.52.0)
       rake (>= 0.9, < 13)
       sass (~> 3.4.20)
-    slim (3.0.7)
-      temple (~> 0.7.6)
+    slim (3.0.9)
+      temple (>= 0.7.6, < 0.9)
       tilt (>= 1.3.3, < 2.1)
     slim_lint (0.12.0)
       rake (>= 10, < 13)
@@ -38,8 +39,8 @@ GEM
       slim (~> 3.0)
       sysexits (~> 1.1)
     sysexits (1.2.0)
-    temple (0.7.7)
-    tilt (2.0.7)
+    temple (0.8.2)
+    tilt (2.0.10)
     unicode-display_width (1.3.0)
 
 PLATFORMS
