@@ -22,7 +22,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Bookmark lines
 Plug 'MattesGroeger/vim-bookmarks'
 " FZF file search
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " comment files with keyboard shortcuts
 Plug 'tpope/vim-commentary'
 " UNIX file commands
@@ -89,7 +89,7 @@ endif
 colorscheme hybrid
 set background=dark
 let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+let g:hybrid_reduced_contrast = 0 " Remove this line if using the default palette.
 set guifont=Fira:h13
 set colorcolumn=0
 
@@ -164,12 +164,19 @@ map Q <Nop>
 " Remove command history keymap
 nnoremap q: <nop>
 
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
 " open error loclist
 let g:ale_open_list = 1
 " Dont check as text is changed
 let g:ale_lint_on_text_changed = 0
 " Dont run on enter
 let g:ale_lint_on_enter = 0
+" Fix on save
+let g:ale_fix_on_save = 1
 
 " ui colors for statusline
 hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none
