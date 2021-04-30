@@ -46,6 +46,7 @@ brew "python-yq", link: false
 brew "reattach-to-user-namespace"
 brew "ripgrep"
 brew "ruby-install"
+brew "starship"
 brew "stern"
 brew "the_platinum_searcher"
 brew "tmux"

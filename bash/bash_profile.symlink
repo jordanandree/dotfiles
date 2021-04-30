@@ -28,9 +28,6 @@ else
   export EDITOR='vim'
 fi
 
-# green path with git branch in bash prompt
-. ~/bin/prompt
-
 # GPG
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 eval "$(gpg-agent)"
@@ -41,6 +38,9 @@ ssh-add -A -t 4h 2>/dev/null;
 if [ -f `brew --prefix`/etc/bash_completion ]; then
 . `brew --prefix`/etc/bash_completion
 fi
+
+# Homebrew
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -84,6 +84,9 @@ LPASS_AGENT_DISABLE=1
 if [ -f ~/.bash_profile.local ]; then
   . ~/.bash_profile.local
 fi
+
+# Starship prompt
+eval "$(starship init bash)"
 
 # Setup history
 export HISTTIMEFORMAT="%h %d %H:%M:%S "
