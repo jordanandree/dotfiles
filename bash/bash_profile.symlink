@@ -2,6 +2,7 @@
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a"
 export GPG_TTY=$(tty)
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # bundler aliases
 alias bu="bundle update"
@@ -42,18 +43,17 @@ fi
 # Homebrew
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
-# Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # NPM modules
 export PATH="/usr/local/share/npm/bin:$PATH"
-
-# Composer global packages
-export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # Go bin
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
 # Docker
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
