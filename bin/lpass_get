@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-lpass show $1 | grep Password | tr ": " "\n" | tail -1 | xargs echo -n
