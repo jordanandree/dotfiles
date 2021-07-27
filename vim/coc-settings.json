@@ -1,4 +1,8 @@
 {
+  "diagnostic.displayByAle": true,
+
+  "coc.preferences.jumpCommand": "tabe",
+
   "languageserver": {
     "intelephense": {
       "command": "intelephense",
@@ -25,7 +29,7 @@
   ],
 
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
+  "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",

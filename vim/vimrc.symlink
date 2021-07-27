@@ -3,6 +3,9 @@ set rtp+=~/.fzf
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" disable ale lsp
+let g:ale_disable_lsp = 1
+
 " ----------------
 " Plugins
 " ----------------
@@ -177,6 +180,8 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
 " Fix on save
 let g:ale_fix_on_save = 1
+" disable ale lsp
+let g:ale_disable_lsp = 1
 
 " ui colors for statusline
 hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none
