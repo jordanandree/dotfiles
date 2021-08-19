@@ -25,7 +25,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Bookmark lines
 Plug 'MattesGroeger/vim-bookmarks'
 " FZF file search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " comment files with keyboard shortcuts
 Plug 'tpope/vim-commentary'
 " UNIX file commands
@@ -153,13 +154,15 @@ set undodir=~/.vim/undodir
 
 " Tab between buffers
 noremap <tab> <c-w><c-w>
+" Use FZF for buffer navigation
+nnoremap <silent> <leader>b :Buffers<CR>
 
 nmap <C-]> :tabnext<CR>
 nmap <C-[> :tabprevious<CR>
 nunmap <Esc>
 
-" bind ctrl-p to FZF
-map <C-p> :FZF <enter>
+" bind ctrl-p to FZF File browsers
+map <C-p> :Files <enter>
 
 " Remove Ex keymap
 map Q <Nop>
