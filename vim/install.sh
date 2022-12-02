@@ -13,4 +13,3 @@ if [ ! -d ~/.config/nvim/ ]; then
 fi
 
 vim +PlugInstall +qall
-vim +CocInstall +qall

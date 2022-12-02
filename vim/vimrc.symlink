@@ -1,356 +1,181 @@
-" set the runtime path to include fzf
-set rtp+=~/.fzf
+" --- Plugins
+call plug#begin()
+Plug 'sainnhe/everforest'     " Color theme
+Plug 'junegunn/fzf.vim'       " Fuzzy file search for buffer navigation
+Plug 'itchyny/lightline.vim'  " Status line theme
+Plug 'itchyny/vim-gitbranch'  " Git branch in status line
+Plug 'airblade/vim-gitgutter' " Git changes in gutter
+Plug 'sunjon/shade.nvim'      " Fade inactive windows / splits
+Plug 'neovim/nvim-lspconfig'  " LSP Config
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 
-call plug#begin('~/.local/share/nvim/plugged')
-
-" disable ale lsp
-let g:ale_disable_lsp = 1
-
-" ----------------
-" Plugins
-" ----------------
-
-" Utilities
-" inline git status
-Plug 'airblade/vim-gitgutter'
-" Git for vim
-Plug 'tpope/vim-fugitive'
-" Github gist
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
-" Gbrowse for files or lines
-Plug 'tpope/vim-rhubarb'
-" code completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Bookmark lines
-Plug 'MattesGroeger/vim-bookmarks'
-" FZF file search
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-" comment files with keyboard shortcuts
-Plug 'tpope/vim-commentary'
-" UNIX file commands
-Plug 'tpope/vim-eunuch'
-" :e any/non/existant/path.txt to create it
-Plug 'pbrisbin/vim-mkdir'
-" recognize .editorconfig files
-Plug 'editorconfig/editorconfig-vim'
-" Linter for all the things
-Plug 'w0rp/ale'
-" Rake in vim
-Plug 'tpope/vim-rake'
-" Rails commands and rails-specific syntax
-Plug 'tpope/vim-rails'
-" auto-add 'end' and 'endif'
-Plug 'tpope/vim-endwise'
-" Ruby syntax
-Plug 'vim-ruby/vim-ruby'
-" CoffeeScript syntax
-Plug 'kchmck/vim-coffee-script'
-" ES6 syntax and snippets
-Plug 'isRuslan/vim-es6'
-" Slim
-Plug 'slim-template/vim-slim'
-" Crystal
-Plug 'rhysd/vim-crystal'
-" VIML tests
-Plug 'junegunn/vader.vim'
-" Distraction free mode
-Plug 'junegunn/goyo.vim'
-" Show me the whitespace
-Plug 'ntpeters/vim-better-whitespace'
-" Golang
-Plug 'fatih/vim-go'
-" autoclose braces, brackets, etc
-Plug 'Townk/vim-autoclose'
-" alignment
-Plug 'junegunn/vim-easy-align'
-" Dockerfiles
-Plug 'ekalinin/Dockerfile.vim'
-" TOML
-Plug 'cespare/vim-toml'
-" JavaScript
+" --- Syntax: TS/JS
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-" -------------
-" Color Pallete
-" -------------
-Plug 'w0ng/vim-hybrid'
-
-" Initialize plugin system
+" --- Syntax: GraphQL
+Plug 'jparise/vim-graphql'
 call plug#end()
 
-
-" Colors and Syntax
-syntax on
-filetype plugin indent on    " required
-if (has("termguicolors"))
-  set termguicolors
-endif
-colorscheme hybrid
-set background=dark
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 0 " Remove this line if using the default palette.
-set guifont="IBM Plex Mono":h13
-set colorcolumn=0
-
-:set tags=./tags;
-
-" Syntax for files
-
-autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy shiftwidth=4 tabstop=4
-autocmd FileType groovy set shiftwidth=4 tabstop=4
-autocmd BufNewFile,BufRead *.pp set filetype=ruby
-autocmd BufNewFile,BufRead *.pp set syntax=ruby
-autocmd FileType go set shiftwidth=4 tabstop=4
-
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
-augroup FiletypeGroup
-    autocmd!
-    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-augroup END
-
-set updatetime=500
-set nocursorline
-set expandtab
-set backspace=2
-set modelines=0
-set shiftwidth=2
+" --- Global Settings
 set clipboard=unnamed
-set synmaxcol=0
-if !has('nvim')
-  set ttyscroll=10
-endif
 set encoding=utf-8
 set tabstop=2
+set shiftwidth=2
 set wrap
 set number
 set expandtab
+set signcolumn=yes
+set cursorline
+set undofile
 set nowritebackup
 set noswapfile
 set nobackup
-set hlsearch
-set ignorecase
-set smartcase
-set showtabline=2
-set noshowmode
-set noruler
-set noshowcmd
-set hidden
+set undodir=~/.vim/undodir
 
-" splits
+" --- Splits
 set splitright " open vsplit on the right
 set splitbelow " open split below current
 
-" set directory for undofiles
-" allows for history after a file has been closed
-set undofile
-set undodir=~/.vim/undodir
+" --- Status Line
+set laststatus=2
+set noshowmode
+let g:lightline = {
+	\ 'colorscheme': 'one',
+  \ 'active': {
+  \   'left':  [ ['mode', 'paste'],
+  \              ['gitbranch', 'readonly', 'relativepath', 'modified'] ],
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'filetype' ] ],
+  \ 'component_function': {
+  \   'gitbranch': 'gitbranch#name'
+  \ },
+  \ },
+	\ }
+if !has('gui_running')
+  set t_Co=256
+endif
 
+" --- FZF
+" Set the runtime path to include fzf
+set rtp+=/usr/local/opt/fzf
+let g:fzf_preview_window = ''
 " Tab between buffers
 noremap <tab> <c-w><c-w>
-" Use FZF for buffer navigation
+noremap <S-tab> <c-w><S-w>
+" User FZF for buffer navigation
 nnoremap <silent> <leader>b :Buffers<CR>
-
-nmap <C-]> :tabnext<CR>
-nmap <C-[> :tabprevious<CR>
-nunmap <Esc>
-
 " bind ctrl-p to FZF File browsers
 map <C-p> :Files <enter>
 
-" Remove Ex keymap
-map Q <Nop>
-
-" Remove command history keymap
-nnoremap q: <nop>
-
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
-
-" open error loclist
-let g:ale_open_list = 1
-" Dont check as text is changed
-let g:ale_lint_on_text_changed = 0
-" Dont run on enter
-let g:ale_lint_on_enter = 0
-" Fix on save
-let g:ale_fix_on_save = 1
-" disable ale lsp
-let g:ale_disable_lsp = 1
-
-" ui colors for statusline
-hi TabLine      gui=none ctermfg=242 ctermbg=233 cterm=none
-hi TabLineSel   gui=bold ctermfg=14  ctermbg=233 cterm=bold
-hi TabLineFill  gui=none ctermfg=242 ctermbg=233 cterm=none
-let g:currentmode={
-	\ 'n'  : 'Normal',
-	\ 'no' : 'N·Operator Pending',
-	\ 'v'  : 'Visual',
-	\ 'V'  : 'V·Line',
-	\ '' : 'V·Block',
-	\ 's'  : 'Select',
-	\ 'S'  : 'S·Line',
-	\ '' : 'S·Block',
-	\ 'i'  : 'Insert',
-	\ 'R'  : 'Replace',
-	\ 'Rv' : 'V·Replace',
-	\ 'c'  : 'Command',
-	\ 'cv' : 'Vim Ex',
-	\ 'ce' : 'Ex',
-	\ 'r'  : 'Prompt',
-	\ 'rm' : 'More',
-	\ 'r?' : 'Confirm',
-	\ '!'  : 'Shell',
-  \ 't'  : ''
-\}
-
-function! DrawInsertHighlight()
-  hi! statusline gui=none ctermfg=14 ctermbg=233
-endfunction
-
-function! DrawNormalHighlight()
-  hi! statusline gui=none ctermfg=233 ctermbg=250
-endfunction
-
-function! DrawReplaceHighlight()
-  hi! statusline gui=none ctermfg=1 ctermbg=233
-endfunction
-
-function! DrawVisualHighlight()
-  hi! statusline gui=none ctermfg=11 ctermbg=233
-endfunction
-
-" change statusline background color for modes
-function! ChangeStatuslineColors()
-  if (mode() =~# '\v(n|no)')
-    call DrawNormalHighlight()
-  elseif (mode() =~# '\v(v|V|^V)' || g:currentmode[mode()] ==# 'V·Block')
-    call DrawVisualHighlight()
-  elseif (mode() ==# 'i')
-    call DrawInsertHighlight()
-  elseif (mode() =~# '\v(R|Rv)' || g:currentmode[mode()] ==# 'V·Replace')
-    call DrawReplaceHighlight()
-  else
-    call DrawNormalHighlight()
-  endif
-
-  return ''
-endfunction
-
-" Formats the statusline
-let &stl  = ''
-let &stl .= '%{ChangeStatuslineColors()}'
-let &stl .= '[%{toupper(mode())}]'
-let &stl .= ' '      " Separator
-let &stl .= '%f'     " file name
-let &stl .= '%m'     " modified flag
-let &stl .= '%r'     " read only flag
-
-" Git info
-let &stl .= ' '
-let &stl .= '%{fugitive#statusline()} '   " Buffer's Git info
-
-" Linter info
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
-let &stl.= '%#warningmsg#'
-let &stl .= " %{LinterStatus()} "
-let &stl .= '%*'
-
-" Coc-vim settings
-
-" Global extensions
-let g:coc_global_extensions = [
-  \ 'coc-go',
-  \ 'coc-phpls',
-  \ 'coc-tsserver',
-  \ 'coc-json',
-  \ 'coc-markdownlint',
-  \ 'coc-solargraph',
-  \ 'coc-yaml',
-  \ 'coc-css',
-  \ 'coc-html',
-  \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
+" --- Colors and Theme
+syntax on
+filetype plugin indent on
+if has('termguicolors')
+  set termguicolors
 endif
+colorscheme everforest
+set guifont="IBM Plex Mono":h13
+let g:everforest_background = 'hard'
 
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
+" Dim inactive windows
+lua <<EOF
+require'shade'.setup{}
+EOF
 
-" Show docs on hover
-function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#util#has_float() == 0)
-    silent call CocActionAsync('doHover')
-  endif
-endfunction
+" --- File sidebar
+lua <<EOF
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-" function! s:show_hover_doc()
-"   call timer_start(500, 'ShowDocIfNoDiagnostic')
-" endfunction
+require("nvim-tree").setup({
+  view = {
+      adaptive_size = true,
+  }
+})
+EOF
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" --- LSP
+lua <<EOF
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-" autocmd CursorHoldI * :call <SID>show_hover_doc()
-" autocmd CursorHold * :call <SID>show_hover_doc()
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
 
-" Navigate between errors
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+local lsp = require 'lspconfig'
 
-" Show list of diagnostics
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+-- Completions
+local coq = require 'coq'
 
-" Show symbols list
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+vim.g.coq_settings = {
+  auto_start = true,
+}
 
-" Invoke code actions
-nmap <leader>do <Plug>(coc-codeaction)
+vim.api.nvim_command [[ COQnow --shut-up ]]
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+-- TypeScript
+lsp.tsserver.setup(coq.lsp_ensure_capabilities {
+  on_attach = on_attach,
+})
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+-- ESLint
+local util = require 'lspconfig.util'
+lsp.eslint.setup(coq.lsp_ensure_capabilities {
+    on_attach = on_attach,
+    root_dir = util.find_package_json_ancestor,
+    settings = {
+        codeActionOnSave = {
+            enable = true,
+            mode = "all"
+        },
+    }
+})
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+-- JSON
+lsp.jsonls.setup{}
 
+-- YAML
+lsp.yamlls.setup{}
+
+EOF
+
+autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+
+" --- Local overrides
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
-set mouse=a

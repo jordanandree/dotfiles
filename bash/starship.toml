@@ -68,7 +68,7 @@ disabled = false
 disabled = true
 
 [java]
-disabled = false
+disabled = true
 
 [julia]
 disabled = true
@@ -80,7 +80,7 @@ disabled = false
 disabled = true
 
 [nodejs]
-disabled = false
+disabled = true
 detect_extensions = []
 detect_folders = []
 detect_files = ['.nvmrc']
@@ -98,7 +98,7 @@ disabled = false
 disabled = true
 
 [python]
-disabled = false
+disabled = true
 
 [red]
 disabled = true
