@@ -7,7 +7,7 @@ function new-worktree() {
     local name="$1"
 
     if [[ -z "$name" ]]; then
-        name=read
+        read -p "Enter worktree name: " name
     fi
 
     if [[ -z "$name" ]]; then
@@ -16,8 +16,9 @@ function new-worktree() {
     fi
 
     cd $(wt_root)
-    git worktree add "$user/$1" -B "$user/$1" main
-    cd "$user/$1"
+    git fetch origin main
+    git worktree add "$user/$name" -B "$user/$name" main
+    cd "$user/$name"
 }
 
 function list-worktree() {
