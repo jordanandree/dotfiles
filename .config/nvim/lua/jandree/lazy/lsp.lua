@@ -24,18 +24,19 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
+        local lspconfig = require("lspconfig")
 
         require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",                 -- lua
-                "ts_ls",                  -- js / ts
-                "denols",                 -- deno
-                "eslint",                 -- formatting
-                "yamlls",                 -- yaml
-                "jsonls",                 -- json
-                "bashls",                 -- bash
+                "lua_ls", -- lua
+                "ts_ls",  -- js / ts
+                "denols", -- deno
+                "eslint", -- formatting
+                "yamlls", -- yaml
+                "jsonls", -- json
+                "bashls", -- bash
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -45,7 +46,6 @@ return {
                 end,
 
                 ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
                         capabilities = capabilities,
                         settings = {
@@ -58,6 +58,25 @@ return {
                         }
                     }
                 end,
+
+                ["yamlls"] = function()
+                    lspconfig.yamlls.setup {
+                        on_attach = function(client)
+                            client.server_capabilities.documentFormattingProvider = true
+                        end,
+                        capabilities = capabilities,
+                        settings = {
+                            yaml = {
+                                format = {
+                                    enable = true
+                                },
+                                schemaStore = {
+                                    enable = true
+                                }
+                            }
+                        }
+                    }
+                end
             }
         })
 
