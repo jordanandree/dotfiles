@@ -5,7 +5,7 @@ symlink_sources = [
   ".inputrc",
   ".tmux.conf",
   ".config/nvim",
-  ".config/kitty",
+  ".config/ghostty",
   "bin",
   "bash",
 ]
