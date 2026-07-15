@@ -32,7 +32,6 @@ return {
             ensure_installed = {
                 "lua_ls", -- lua
                 "ts_ls",  -- js / ts
-                "denols", -- deno
                 "eslint", -- formatting
                 "yamlls", -- yaml
                 "jsonls", -- json

@@ -1,5 +1,13 @@
-function wt_root() {
+function __wt_root() {
     git rev-parse --path-format=absolute --git-common-dir
+}
+
+function __wt_after() {
+    local afterhook="$(__wt_root)/.worktree-after"
+    if [[ -f "$afterhook" ]]; then
+        echo "Running afterhook"
+        sh "$afterhook"
+    fi
 }
 
 function new-worktree() {
@@ -15,10 +23,11 @@ function new-worktree() {
         return
     fi
 
-    cd $(wt_root)
+    cd $(__wt_root)
     git fetch origin main
     git worktree add "$user/$name" -B "$user/$name" main
     cd "$user/$name"
+    __wt_after
 }
 
 function list-worktree() {
@@ -32,6 +41,16 @@ function switch-worktree() {
 function remove-worktree() {
     local tree=$(list-worktree)
 
-    cd $(wt_root)
+    cd $(__wt_root)
     git worktree remove "$tree"
+}
+
+function prune-merged-branches(){
+    git checkout -q main && \
+        git for-each-ref refs/heads/ "--format=%(refname:short)" | \
+        while read branch; do \
+            mergeBase=$(git merge-base main $branch) && \
+            [[ $(git cherry main $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && \
+            git branch -D $branch;
+        done
 }

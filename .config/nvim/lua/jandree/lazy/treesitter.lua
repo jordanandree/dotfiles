@@ -1,8 +1,9 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    branch = "main",
+    -- build = ":TSUpdate",
     config = function()
-        require("nvim-treesitter.configs").setup({
+        require("nvim-treesitter.config").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
                 "vimdoc", "lua", "luadoc",
@@ -11,7 +12,7 @@ return {
                 "bash", "editorconfig", "tmux",
                 "yaml", "json", "jq",
                 "go", "graphql", "java", "kotlin", "proto", "properties",
-                "python", "ruby", "elixir",
+                "python",
                 "sql", "csv"
             },
 
@@ -38,14 +39,14 @@ return {
             },
         })
 
-        local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        treesitter_parser_config.templ = {
-            install_info = {
-                url = "https://github.com/vrischmann/tree-sitter-templ.git",
-                files = { "src/parser.c", "src/scanner.c" },
-                branch = "master",
-            },
-        }
+        -- local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+        -- treesitter_parser_config.templ = {
+        --     install_info = {
+        --         url = "https://github.com/vrischmann/tree-sitter-templ.git",
+        --         files = { "src/parser.c", "src/scanner.c" },
+        --         branch = "master",
+        --     },
+        -- }
 
         vim.treesitter.language.register("templ", "templ")
     end
