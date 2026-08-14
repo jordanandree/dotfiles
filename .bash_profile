@@ -3,28 +3,16 @@ export HISTFILESIZE=10000
 
 PROMPT_COMMAND='history -a; history -c; history -r'
 export -n PROMPT_COMMAND
-# Add bash scripts
-export PATH="$HOME/bin:$PATH"
 
-# Add homebrew
+export PATH="$HOME/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
 export NODE_OPTIONS="--max-old-space-size=8192" 
-
-# Bash completions
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-
-# Postgres
-export PATH="$(brew --prefix)/opt/libpq/bin:$PATH"
-
-# neovim
-alias vim="nvim"
 export EDITOR='nvim'
 
 [ -s "/Users/jandree/.scm_breeze/scm_breeze.sh" ] && source "/Users/jandree/.scm_breeze/scm_breeze.sh"
 [ -s "$(brew --prefix)/etc/autojump.sh" ] && source "$(brew --prefix)/etc/autojump.sh"
-alias c="j"
 
 # Git status in prompt
 function parse_git_dirty {
@@ -48,6 +36,5 @@ if [ "$PS1" ] ; then
     export PS1="\n \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 fi
 
-[ -f ~/bash/work.sh ] && . ~/bash/work.sh
-[ -f ~/bash/git.sh ] && . ~/bash/git.sh
-[ -f ~/bash/env.sh ] && . ~/bash/env.sh
+[ -s "$HOME/.config/bash/git" ] && source "$HOME/.config/bash/git"
+[ -s "$HOME/.config/bash/aliases" ] && source "$HOME/.config/bash/aliases"
