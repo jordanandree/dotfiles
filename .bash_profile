@@ -7,12 +7,14 @@ export -n PROMPT_COMMAND
 export PATH="$HOME/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+HOMEBREW_PREFIX=$(brew --prefix)
+
 export NODE_OPTIONS="--max-old-space-size=8192" 
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+[[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 export EDITOR='nvim'
 
 [ -s "/Users/jandree/.scm_breeze/scm_breeze.sh" ] && source "/Users/jandree/.scm_breeze/scm_breeze.sh"
-[ -s "$(brew --prefix)/etc/autojump.sh" ] && source "$(brew --prefix)/etc/autojump.sh"
+[ -s "$HOMEBREW_PREFIX/etc/autojump.sh" ] && source "$HOMEBREW_PREFIX/etc/autojump.sh"
 
 # Git status in prompt
 function parse_git_dirty {
@@ -35,6 +37,10 @@ if [ "$PS1" ] ; then
     bind -x '"\C-f": tmux-sessionizer;'
     export PS1="\n \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 [ -s "$HOME/.config/bash/git" ] && source "$HOME/.config/bash/git"
 [ -s "$HOME/.config/bash/aliases" ] && source "$HOME/.config/bash/aliases"
