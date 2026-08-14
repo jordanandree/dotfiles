@@ -9,3 +9,5 @@ font-feature = -dlig
 cursor-style = block
 shell-integration-features = no-cursor
 desktop-notifications = true
+
+theme = TokyoNight Night
