@@ -1,5 +1,3 @@
-local nvim_lsp = require("lspconfig")
-
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -24,59 +22,85 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
-        local lspconfig = require("lspconfig")
 
         require("fidget").setup({})
         require("mason").setup()
+        local servers = {
+            "lua_ls", -- lua
+            "ts_ls",  -- js / ts
+            "eslint", -- formatting
+            "yamlls", -- yaml
+            "jsonls", -- json
+            "bashls", -- bash
+        }
+
         require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls", -- lua
-                "ts_ls",  -- js / ts
-                "eslint", -- formatting
-                "yamlls", -- yaml
-                "jsonls", -- json
-                "bashls", -- bash
-            },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+            ensure_installed = servers,
+            automatic_enable = false,
+        })
 
-                ["lua_ls"] = function()
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
-
-                ["yamlls"] = function()
-                    lspconfig.yamlls.setup {
-                        on_attach = function(client)
-                            client.server_capabilities.documentFormattingProvider = true
-                        end,
-                        capabilities = capabilities,
-                        settings = {
-                            yaml = {
-                                format = {
-                                    enable = true
-                                },
-                                schemaStore = {
-                                    enable = true
-                                }
-                            }
-                        }
-                    }
+        local function root_dir_for(markers)
+            return function(bufnr, on_dir)
+                local root = vim.fs.root(bufnr, markers)
+                if root then
+                    on_dir(root)
                 end
-            }
+            end
+        end
+
+        local server_configs = {
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        runtime = { version = "Lua 5.1" },
+                        diagnostics = {
+                            globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                        }
+                    }
+                }
+            },
+            yamlls = {
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = true
+                end,
+                settings = {
+                    yaml = {
+                        format = {
+                            enable = true
+                        },
+                        schemaStore = {
+                            enable = true
+                        }
+                    }
+                }
+            },
+            ts_ls = {
+                root_dir = root_dir_for({ "package.json" }),
+                workspace_required = true,
+            },
+        }
+
+        for _, server_name in ipairs(servers) do
+            vim.lsp.config(server_name, vim.tbl_deep_extend(
+                "force",
+                { capabilities = capabilities },
+                server_configs[server_name] or {}
+            ))
+        end
+
+        vim.lsp.config("denols", {
+            capabilities = capabilities,
+            root_dir = root_dir_for({ "deno.json" }),
+        })
+
+        vim.lsp.enable({
+            "lua_ls",
+            "ts_ls",
+            "eslint",
+            "yamlls",
+            "jsonls",
+            "bashls",
+            "denols",
         })
 
         require("mason-tool-installer").setup({
@@ -113,14 +137,5 @@ return {
             },
         })
 
-
-        nvim_lsp.denols.setup {
-            root_dir = nvim_lsp.util.root_pattern("deno.json"),
-        }
-
-        nvim_lsp.ts_ls.setup {
-            root_dir = nvim_lsp.util.root_pattern("package.json"),
-            single_file_support = false,
-        }
     end
 }
